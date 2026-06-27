@@ -1,0 +1,47 @@
+{
+  "page_count": 1,
+  "total_jobs": 2,
+  "total_changes": 3,
+  "pages": [
+    {
+      "source_url": "https://example.com/jobs",
+      "jobs": [
+        {
+          "title": "Data Engineer",
+          "url": "https://example.com/jobs/data-engineer",
+          "signature": "data-engineer|https://example.com/jobs/data-engineer"
+        },
+        {
+          "title": "Product Manager",
+          "url": "https://example.com/jobs/product-manager",
+          "signature": "product-manager|https://example.com/jobs/product-manager"
+        }
+      ],
+      "stats": {
+        "links_seen": 3,
+        "jobs_found": 2,
+        "duplicate_jobs_removed": 0
+      },
+      "changes": [
+        {
+          "change_type": "new",
+          "title": "Product Manager",
+          "url": "https://example.com/jobs/product-manager",
+          "signature": "product-manager|https://example.com/jobs/product-manager"
+        },
+        {
+          "change_type": "unchanged",
+          "title": "Data Engineer",
+          "url": "https://example.com/jobs/data-engineer",
+          "signature": "data-engineer|https://example.com/jobs/data-engineer"
+        },
+        {
+          "change_type": "removed",
+          "title": "Support Specialist",
+          "url": "https://example.com/jobs/support-specialist",
+          "signature": "support-specialist|https://example.com/jobs/support-specialist"
+        }
+      ]
+    }
+  ]
+}

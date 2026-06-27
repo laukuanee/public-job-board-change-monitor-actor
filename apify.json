@@ -1,0 +1,10 @@
+{
+  "actorSpecification": 1,
+  "name": "public-job-board-change-monitor-actor",
+  "title": "Public Job Board Change Monitor",
+  "description": "Extract likely public job listings from career pages and emit new, unchanged, and removed listing changes.",
+  "version": "0.1",
+  "buildTag": "latest",
+  "input": "./INPUT_SCHEMA.json",
+  "dockerfile": "./Dockerfile"
+}

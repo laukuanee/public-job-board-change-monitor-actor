@@ -1,0 +1,20 @@
+{
+  "pages": [
+    {
+      "url": "https://example.com/jobs",
+      "html": "<html><body><a class=\"job-card\" href=\"/jobs/data-engineer\">Data Engineer</a><a class=\"job-card\" href=\"/jobs/product-manager\">Product Manager</a><a href=\"/about\">About</a></body></html>",
+      "previous_jobs": [
+        {
+          "title": "Data Engineer",
+          "url": "https://example.com/jobs/data-engineer",
+          "signature": "data-engineer|https://example.com/jobs/data-engineer"
+        },
+        {
+          "title": "Support Specialist",
+          "url": "https://example.com/jobs/support-specialist",
+          "signature": "support-specialist|https://example.com/jobs/support-specialist"
+        }
+      ]
+    }
+  ]
+}

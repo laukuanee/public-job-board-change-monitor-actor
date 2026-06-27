@@ -1,0 +1,42 @@
+{
+  "title": "Public Job Board Change Monitor",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "pages": {
+      "title": "Public job pages",
+      "type": "array",
+      "description": "Public career pages or job board result pages to inspect. Do not provide login-only or private URLs.",
+      "editor": "json",
+      "prefill": [
+        {
+          "url": "https://example.com/jobs"
+        }
+      ],
+      "items": {
+        "type": "object",
+        "required": ["url"],
+        "properties": {
+          "url": {
+            "title": "Page URL",
+            "type": "string",
+            "description": "Public career or job-board page URL."
+          },
+          "html": {
+            "title": "Optional HTML",
+            "type": "string",
+            "description": "Optional saved HTML for offline tests or controlled runs.",
+            "editor": "textarea"
+          },
+          "previous_jobs": {
+            "title": "Previous jobs",
+            "type": "array",
+            "description": "Optional previous job records with title, url, and signature fields for change detection.",
+            "editor": "json"
+          }
+        }
+      }
+    }
+  },
+  "required": ["pages"]
+}
