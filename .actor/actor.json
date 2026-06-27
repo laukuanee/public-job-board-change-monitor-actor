@@ -1,0 +1,133 @@
+{
+  "actorSpecification": 1,
+  "name": "public-job-board-change-monitor-actor",
+  "title": "Public Job Board Change Monitor",
+  "description": "Monitor public career pages for job-level additions and removals without logging in or scraping private accounts.",
+  "version": "0.1",
+  "buildTag": "latest",
+  "input": {
+    "title": "Public Job Board Change Monitor",
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+      "pages": {
+        "title": "Public job pages",
+        "type": "array",
+        "description": "Public career pages or job board result pages to inspect. Do not provide login-only or private URLs.",
+        "editor": "json",
+        "prefill": [
+          {
+            "url": "https://example.com/jobs"
+          }
+        ],
+        "items": {
+          "type": "object",
+          "required": [
+            "url"
+          ],
+          "properties": {
+            "url": {
+              "title": "Page URL",
+              "type": "string",
+              "description": "Public career or job-board page URL."
+            },
+            "html": {
+              "title": "Optional HTML",
+              "type": "string",
+              "description": "Optional saved HTML for offline tests or controlled runs.",
+              "editor": "textarea"
+            },
+            "previous_jobs": {
+              "title": "Previous jobs",
+              "type": "array",
+              "description": "Optional previous job records with title, url, and signature fields for change detection.",
+              "editor": "json"
+            }
+          }
+        }
+      }
+    },
+    "required": [
+      "pages"
+    ]
+  },
+  "output": {
+    "actorOutputSchemaVersion": 1,
+    "title": "Public job board change results",
+    "description": "Default dataset containing normalized job records and new, unchanged, or removed change records.",
+    "type": "object",
+    "properties": {
+      "results": {
+        "type": "string",
+        "title": "Results",
+        "description": "Default dataset records produced by the actor.",
+        "template": "{{links.apiDefaultDatasetUrl}}/items"
+      }
+    }
+  },
+  "storages": {
+    "dataset": {
+      "actorSpecification": 1,
+      "fields": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "record_type": {
+            "type": "string",
+            "title": "Record type",
+            "description": "Either job for a current listing or change for a diff event."
+          },
+          "source_url": {
+            "type": "string",
+            "title": "Source URL",
+            "description": "Public page that was monitored."
+          },
+          "title": {
+            "type": "string",
+            "title": "Job title",
+            "description": "Normalized listing title when available."
+          },
+          "url": {
+            "type": "string",
+            "title": "Job URL",
+            "description": "Absolute URL for the job listing when available."
+          },
+          "signature": {
+            "type": "string",
+            "title": "Signature",
+            "description": "Stable title and URL signature for future comparisons."
+          },
+          "change_type": {
+            "type": "string",
+            "title": "Change type",
+            "description": "new, unchanged, or removed for change records."
+          }
+        },
+        "required": [
+          "record_type",
+          "source_url"
+        ]
+      },
+      "views": {
+        "overview": {
+          "title": "Overview",
+          "transformation": {
+            "fields": [
+              "record_type",
+              "source_url",
+              "title",
+              "url",
+              "signature",
+              "change_type"
+            ]
+          },
+          "display": {
+            "component": "table"
+          }
+        }
+      }
+    }
+  },
+  "dockerfile": "../Dockerfile"
+}

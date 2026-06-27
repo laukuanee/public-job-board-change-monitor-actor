@@ -6,10 +6,16 @@ from __future__ import annotations
 import json
 import os
 import sys
+import asyncio
 from pathlib import Path
 from typing import Any
 
 from job_board_monitor import run_actor
+
+try:
+    from apify import Actor
+except ImportError:  # Local tests do not require the Apify SDK.
+    Actor = None  # type: ignore[assignment]
 
 
 def flatten_records(result: dict[str, Any]) -> list[dict[str, Any]]:
@@ -47,7 +53,27 @@ def default_storage_paths() -> tuple[Path, Path]:
     return input_path, records_path
 
 
+async def run_apify() -> int:
+    if Actor is None:
+        return 1
+
+    try:
+        async with Actor:
+            payload = await Actor.get_input() or {}
+            result = run_actor(payload)
+            for record in flatten_records(result):
+                await Actor.push_data(record)
+            await Actor.set_value("OUTPUT", result)
+    except Exception as exc:
+        print(f"public-job-board-change-monitor error: {exc}", file=sys.stderr)
+        return 1
+    return 0
+
+
 def main() -> int:
+    if Actor is not None and os.environ.get("APIFY_TOKEN"):
+        return asyncio.run(run_apify())
+
     input_path, records_path = default_storage_paths()
     return run_local(input_path, records_path)
 
