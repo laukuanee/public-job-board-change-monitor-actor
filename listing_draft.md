@@ -32,7 +32,9 @@ The actor is designed for public pages only. It does not log in, bypass bot chec
 
 ## Pricing Draft
 
-Launch as usage-based Apify Actor with a low per-run price after creator payout/publishing setup is available. Keep a free local/demo sample in the README.
+Launch as a usage-based Apify Actor with `Try for free` enabled and the lowest available paid usage tier in the Store UI/API. Keep this priced as a public-page monitoring helper, not a recruiting-data platform.
+
+Keep a free local/demo sample in the README. Raise pricing only after there are repeated runs, saved tasks, or review signals.
 
 ## Safety Notes
 
