@@ -32,9 +32,11 @@ The actor is designed for public pages only. It does not log in, bypass bot chec
 
 ## Pricing Draft
 
-Launch as a usage-based Apify Actor with `Try for free` enabled and the lowest available paid usage tier in the Store UI/API. Keep this priced as a public-page monitoring helper, not a recruiting-data platform.
+Launch as a usage-based Apify Actor with `Try for free` enabled.
 
-Keep a free local/demo sample in the README. Raise pricing only after there are repeated runs, saved tasks, or review signals.
+Preferred paid model: pay-per-event at USD 0.01 per successful job or change record when the platform permits it. Fallback paid model: lowest platform-permitted paid usage tier if event pricing is unavailable.
+
+Keep this priced as a public-page monitoring helper, not a recruiting-data platform. Keep a free local/demo sample in the README. Raise pricing only after there are repeated runs, saved tasks, or review signals.
 
 ## Safety Notes
 
